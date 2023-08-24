@@ -4,14 +4,13 @@ import { BtnHolder, Page, PageInput } from "./index.style";
 import { GetUserRequest } from "../../Classes/Requests/UserRequests/GET";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { If } from "../../components/If";
 import { useState } from "react";
 import { ErrorWrapper } from "../../components/ErorrWrapper";
 
 export function SignIn() {
   const { authState, authActions, authMutator } = useAuth();
   const [error, setError] = useState();
-  const [get, set] = useLocalStorage();
+  const {setter:set} = useLocalStorage();
   const router = useNavigate();
 
   const handleOnChangeEmail = (e) => {

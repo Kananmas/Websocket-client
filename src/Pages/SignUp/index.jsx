@@ -1,11 +1,10 @@
-import { Alert, Button, Input, Space } from "antd";
+import { Button } from "antd";
 import { useAuth } from "../../hooks/useAuth";
 import { BtnHolder, Page, PageInput } from "./index.style";
 import { PostUserRequest } from "../../Classes/Requests/UserRequests/POST";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { If } from "../../components/If";
 import { ErrorWrapper } from "../../components/ErorrWrapper";
 
 export function SignUp() {
@@ -16,7 +15,7 @@ export function SignUp() {
     } = useAuth();
     const router = useNavigate();
     const [error,setError] = useState(null);
-    const [getter,setter] = useLocalStorage();
+    const {setter} = useLocalStorage();
 
     useEffect(() => {
         authMutator(authActions.mutateType("user"));

@@ -13,5 +13,5 @@ export function useLocalStorage() {
     localStorage.setItem(key, value);
   };
 
-  return [getter, setter];
+  return { getter , setter};
 }

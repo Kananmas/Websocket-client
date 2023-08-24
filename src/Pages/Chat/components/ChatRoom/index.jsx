@@ -11,12 +11,19 @@ export function ChatRoom({ SelectedRoom }) {
   const [messageText, setMessageText] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const updateMessages = (data) => {
-    data = data.reverse()
-    var roomId = data[0].id
 
-    if(roomId == SelectedRoom.id) 
-    setMessages(data);
+
+  const updateMessages = (data) => {
+    try {
+      setMessages([]);
+      if(!SelectedRoom || !data.length) return;
+      var roomId = data[0]?.roomId
+      if(roomId == SelectedRoom.id)
+        setMessages(data);
+    }
+    catch (e) {
+      console.log(e.message);
+    }
   };
   const getChatMessages =async () => {
     try {
@@ -32,12 +39,10 @@ export function ChatRoom({ SelectedRoom }) {
 
   const sendMessages = async () => {
     try {
-      if (connection && connection._connectionState == "Connected") {
         if (connection && connection._connectionState == "Connected") {
           connection.on("RecivieChatMessages", updateMessages);
           connection.invoke("SendNewMessage", messageText, SelectedRoom.id);
         }
-      }
     } catch (e) {
       console.log(e);
     }

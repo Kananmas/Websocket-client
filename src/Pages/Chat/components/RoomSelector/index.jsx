@@ -8,7 +8,7 @@ import { useChat } from "../../../../hooks/useChat";
 import { AllRoomsHolder } from "./index.style";
 
 const roomWrapperStyles = {
-  width: "400px",
+  minWidth: "400px",
   float: "right",
   textAlign: "center",
   borderLeft: "1px solid black",
