@@ -72,8 +72,7 @@ export function SignUp() {
        }
        catch(e) {
            const statusCode = e.statusCode;
-           console.log(e);
-           setError(e.Message);
+           setError(statusCode + e.Message);
        }
     }
 

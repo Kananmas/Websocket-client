@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { If } from "../../../../components/If";
-import { Room } from "./Components/Room";
 import { RoomCreator } from "./Components/RoomCreator";
 import { Button, Input } from "antd";
 import { GetGroupsByName } from "../../../../Classes/Requests/GroupRequests/Get";
 import { useChat } from "../../../../hooks/useChat";
 import { AllRoomsHolder } from "./index.style";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import { RoomMapper } from "./Components/RoomMaper";
 
 const roomWrapperStyles = {
   minWidth: "400px",
@@ -16,7 +16,12 @@ const roomWrapperStyles = {
   minHeight: "94vh",
 };
 
-export function RoomSelector({ rooms, setSelectedRoom, setRooms }) {
+export function RoomSelector({
+  rooms,
+  setSelectedRoom,
+  setRooms,
+  selectedRoom,
+}) {
   const { connection } = useChat();
   const [searchString, setSearchString] = useState("");
   const [searchedRooms, setSearchedRooms] = useState([]);
@@ -38,7 +43,7 @@ export function RoomSelector({ rooms, setSelectedRoom, setRooms }) {
 
   const subscribeToRoom = async (groupId) => {
     try {
-      if (connection && connection._connectionState == "Connected") {
+      if (connection && connection._connectionState === "Connected") {
         connection.invoke("SubscribeToGroup", groupId);
       }
     } catch (e) {
@@ -61,30 +66,36 @@ export function RoomSelector({ rooms, setSelectedRoom, setRooms }) {
       <AllRoomsHolder>
         <If condition={!isSearching}>
           <RoomCreator setGroups={setRooms} />
-          <Button onClick={() => setIsSearching(true)}><SearchOutlined/></Button>
+          <Button onClick={() => setIsSearching(true)}>
+            <SearchOutlined />
+          </Button>
           <If condition={rooms != null && rooms.length}>
-            {rooms.map((room) => (
-              <Room
-                key={room.Id}
-                Room={room}
-                setSelectedRoom={setSelectedRoom}
-              />
-            ))}
+            <RoomMapper
+              rooms={rooms}
+              selectedRoom={selectedRoom}
+              setSelectedRoom={setSelectedRoom}
+            />
           </If>
         </If>
         <If condition={isSearching}>
-          <Input style={{width:"50%" ,marginTop:"12px"}} value={searchString} onChange={handleChangeSearch} />
-          <Button onClick={handleClickSearch}><SearchOutlined/></Button>
+          <Input
+            style={{ width: "50%", marginTop: "12px" }}
+            value={searchString}
+            onChange={handleChangeSearch}
+          />
+          <Button onClick={handleClickSearch}>
+            <SearchOutlined />
+          </Button>
           <If condition={searchedRooms.length}>
-            {searchedRooms.map((room) => (
-              <Room
-                key={room.Id}
-                Room={room}
-                setSelectedRoom={handleOnClickSearchRoom}
-              />
-            ))}
+            <RoomMapper
+              rooms={searchedRooms}
+              selectedRoom={null}
+              setSelectedRoom={handleOnClickSearchRoom}
+            />
           </If>
-          <Button onClick={() => setIsSearching(false)}><CloseOutlined/></Button>
+          <Button onClick={() => setIsSearching(false)}>
+            <CloseOutlined />
+          </Button>
         </If>
       </AllRoomsHolder>
     </div>

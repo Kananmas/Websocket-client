@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useChat } from "../../hooks/useChat";
 import { RoomSelector } from "./components/RoomSelector";
 import { ChatRoom } from "./components/ChatRoom";
@@ -20,7 +20,7 @@ function ChatComponent() {
       if(!connection) {
         await Reconnect();
       }
-      if (connection && connection?._connectionState == "Connected") {
+      if (connection && connection?._connectionState === "Connected") {
         connection.on("RecivieAllRooms", (data) => {
           setRooms(data);
         });
@@ -51,7 +51,7 @@ function ChatComponent() {
       clearTimeout(timeOutValue);
     }
     getRooms();
-  }, [connection, timePassed]);
+  }, [connection, timePassed , selectedRoom]);
 
 
   if (!accesstoken) {
@@ -63,6 +63,7 @@ function ChatComponent() {
       <ChatRoom SelectedRoom={selectedRoom} />
       <RoomSelector
         rooms={rooms}
+        selectedRoom={selectedRoom}
         setSelectedRoom={setSelectedRoom}
         setRooms={setRooms}
       />
