@@ -4,7 +4,6 @@ import { SignUp } from "./Pages/SignUp";
 import { SignIn } from "./Pages/SignIn";
 import { Header } from "./components/Header";
 import { Chat } from "./Pages/Chat";
-import { SignalRProvider } from "./Context/SignalR/SignalRProvider";
 
 function App() {
   return (

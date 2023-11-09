@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { useChat } from "../../hooks/useChat";
 import { RoomSelector } from "./components/RoomSelector";
 import { ChatRoom } from "./components/ChatRoom";
@@ -7,15 +7,19 @@ import { getAccessToken } from "../../utils/get-access-token";
 import { ChatWindow } from "./index.style";
 import { useNavigate } from "react-router-dom";
 
-export function Chat() {
-  const { connection } = useChat();
+function ChatComponent() {
+  const { connection,Reconnect } = useChat();
   const [selectedRoom, setSelectedRoom] = useState(undefined);
+  const [timePassed, setTimePassed] = useState(false);
   const [rooms, setRooms] = useState([]);
   const router = useNavigate();
   const accesstoken = getAccessToken();
 
   async function getRooms() {
     try {
+      if(!connection) {
+        await Reconnect();
+      }
       if (connection && connection?._connectionState == "Connected") {
         connection.on("RecivieAllRooms", (data) => {
           setRooms(data);
@@ -36,10 +40,21 @@ export function Chat() {
       router("/signup");
       return;
     }
+    // this is a evil trick to react so it invoke 
+    // "GetAllRooms" Request to backend
+    const timeOutValue = setTimeout(() => {
+      setTimePassed(true);
+      return timePassed;
+    }, 1000);
+
+    if (timePassed) {
+      clearTimeout(timeOutValue);
+    }
     getRooms();
-  }, [connection]);
-  
-  if(!accesstoken) {
+  }, [connection, timePassed]);
+
+
+  if (!accesstoken) {
     return null;
   }
 
@@ -54,3 +69,5 @@ export function Chat() {
     </ChatWindow>
   );
 }
+
+export const Chat = memo(ChatComponent);

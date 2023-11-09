@@ -5,6 +5,7 @@ import { Button, Input } from "antd";
 import { Message } from "./components/Message";
 import { RoomHolder, RoomInputHolder, RoomMessageHolder } from "./index.style";
 import { randomString } from "../../../../utils/random-string.utils";
+import { SendOutlined } from "@ant-design/icons";
 
 export function ChatRoom({ SelectedRoom }) {
   const { connection } = useChat();
@@ -54,6 +55,7 @@ export function ChatRoom({ SelectedRoom }) {
 
   const handleOnClickSend = () => {
     sendMessages();
+    setMessageText("")
   };
 
   useEffect(() => {
@@ -85,7 +87,7 @@ export function ChatRoom({ SelectedRoom }) {
 
       <RoomInputHolder>
         <Input value={messageText} onChange={handleOnChangeMessageText} />
-        <Button onClick={handleOnClickSend}>Send</Button>
+        <Button onClick={handleOnClickSend}><SendOutlined/></Button>
       </RoomInputHolder>
     </RoomHolder>
   );

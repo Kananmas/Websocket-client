@@ -8,35 +8,34 @@ import { getAccessToken } from "../../utils/get-access-token";
 
 const context = {
   connection: null,
-  Reconnect() {
-    ChatConnection(this.connection);
+  async Reconnect() {
+    ChatConnection(context);
   },
 };
 
-const accessToken = getAccessToken();
-
 async function ChatConnection(context) {
   try {
-    if (!accessToken) return;
-    const connection = new HubConnectionBuilder()
-      .withUrl("https://localhost:44381/chatHub", {
-        skipNegotiation: true,
-        transport: HttpTransportType.WebSockets,
-        withCredentials: false,
-        accessTokenFactory: () => accessToken,
-      })
-      .configureLogging(LogLevel.Information)
-      .withAutomaticReconnect(2000)
-      .build();
+    if (!getAccessToken()) return;
+    if (!context.connection) {
+      const connection = new HubConnectionBuilder()
+        .withUrl("https://localhost:44381/chatHub", {
+          skipNegotiation: true,
+          transport: HttpTransportType.WebSockets,
+          withCredentials: false,
+          accessTokenFactory: () => getAccessToken(),
+        })
+        .configureLogging(LogLevel.Information)
+        .withAutomaticReconnect(2000)
+        .build();
 
-    await connection.start();
+      await connection.start();
 
-    context.connection = connection;
+      context.connection = connection;
+    }
+    context = { ...context };
   } catch (e) {
     console.log(e);
   }
 }
-
-ChatConnection(context);
 
 export const SignlRContext = createContext(context);
