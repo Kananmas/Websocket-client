@@ -4,7 +4,8 @@ import {
   LogLevel,
 } from "@microsoft/signalr";
 import { createContext } from "react";
-import { getAccessToken } from "../../utils/get-access-token";
+import { getAccessToken } from "../../utils/get-access-token.utils";
+
 
 const context = {
   connection: null,
@@ -18,7 +19,7 @@ async function ChatConnection(context) {
     if (!getAccessToken()) return;
     if (!context.connection) {
       const connection = new HubConnectionBuilder()
-        .withUrl("https://localhost:44381/chatHub", {
+        .withUrl(`${process.env.API_ADRESS}/chatHub`, {
           skipNegotiation: true,
           transport: HttpTransportType.WebSockets,
           withCredentials: false,

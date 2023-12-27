@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { useState } from "react";
-import { getAccessToken } from "../../../../../../utils/get-access-token";
+import { getAccessToken } from "../../../../../../utils/get-access-token.utils";
 import { Button, Input } from "antd";
 import { useChat } from "../../../../../../hooks/useChat";
 import { If } from "../../../../../../components/If";

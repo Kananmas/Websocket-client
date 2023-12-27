@@ -3,7 +3,7 @@ import { useChat } from "../../hooks/useChat";
 import { RoomSelector } from "./components/RoomSelector";
 import { ChatRoom } from "./components/ChatRoom";
 import jwtDecode from "jwt-decode";
-import { getAccessToken } from "../../utils/get-access-token";
+import { getAccessToken } from "../../utils/get-access-token.utils";
 import { ChatWindow } from "./index.style";
 import { useNavigate } from "react-router-dom";
 

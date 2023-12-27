@@ -1,9 +1,10 @@
-import { getFromLocalStorage } from "../../utils/get-from-localstorage";
+import { getFromLocalStorage } from "../../utils/get-from-localstorage.utils";
+
 
 const accessToken = getFromLocalStorage("access-Token");
 
 export class BaseRequest {
-  baseUrl = "https://localhost:44381";
+  baseUrl = process.env.API_ADRESS;
   controllerUrl = "";
   method = "GET";
   form = new FormData();
