@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import { useState } from "react";
 import { getAccessToken } from "../../../../../../utils/get-access-token.utils";
 import { Button, Input } from "antd";
-import { useChat } from "../../../../../../hooks/useChat";
+import { useChat } from "../../../../../../hooks/chat.hook";
 import { If } from "../../../../../../components/If";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 

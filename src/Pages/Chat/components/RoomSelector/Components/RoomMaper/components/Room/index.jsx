@@ -3,7 +3,7 @@ import Title from "antd/es/typography/Title";
 import { useCallback } from "react";
 import { LeftSide, RightSide, RoomWrapper } from "./index.style";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useChat } from "../../../../../../../../hooks/useChat";
+import { useChat } from "../../../../../../../../hooks/chat.hook";
 
 export function Room({ Room, setSelectedRoom , selectedRoom}) {
   const { connection } = useChat();

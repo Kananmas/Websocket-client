@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { useChat } from "../../hooks/useChat";
+import { useChat } from "../../hooks/chat.hook";
 import { RoomSelector } from "./components/RoomSelector";
 import { ChatRoom } from "./components/ChatRoom";
 import jwtDecode from "jwt-decode";

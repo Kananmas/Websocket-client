@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode";
 import { MessageContent } from "./components/MessageContent";
 import { useMemo } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useChat } from "../../../../../../hooks/useChat";
+import { useChat } from "../../../../../../hooks/chat.hook";
 import { getAccessToken } from "../../../../../../utils/get-access-token.utils";
 
 const messageStyle = (messeageDir, isMe) => ({

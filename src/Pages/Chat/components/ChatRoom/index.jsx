@@ -1,5 +1,5 @@
 import { useEffect , useState } from "react";
-import { useChat } from "../../../../hooks/useChat";
+import { useChat } from "../../../../hooks/chat.hook";
 import Title from "antd/es/typography/Title";
 import { Button, Input } from "antd";
 import { Message } from "./components/Message";

@@ -3,7 +3,7 @@ import { If } from "../../../../components/If";
 import { RoomCreator } from "./Components/RoomCreator";
 import { Button, Input } from "antd";
 import { GetGroupsByName } from "../../../../Classes/Requests/GroupRequests/Get";
-import { useChat } from "../../../../hooks/useChat";
+import { useChat } from "../../../../hooks/chat.hook";
 import { AllRoomsHolder } from "./index.style";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { RoomMapper } from "./Components/RoomMaper";
