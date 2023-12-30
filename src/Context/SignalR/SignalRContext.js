@@ -19,7 +19,7 @@ async function ChatConnection(context) {
     if (!getAccessToken()) return;
     if (!context.connection) {
       const connection = new HubConnectionBuilder()
-        .withUrl(`${process.env.API_ADRESS}/chatHub`, {
+        .withUrl(`${process.env.REACT_APP_HUB}`, {
           skipNegotiation: true,
           transport: HttpTransportType.WebSockets,
           withCredentials: false,

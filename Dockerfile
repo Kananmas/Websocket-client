@@ -1,6 +1,9 @@
-FROM node:20.10.0
+#Stage 1
+FROM node:20.10.0 as builder
 WORKDIR /app
-COPY . .
+EXPOSE  3000
+COPY package*.json .
 RUN yarn install --production
-CMD ["node", "src/index.js"]
-EXPOSE 3000
+COPY . .
+RUN yarn build
+RUN yarn global add serve

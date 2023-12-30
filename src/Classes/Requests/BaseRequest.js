@@ -3,8 +3,9 @@ import { getFromLocalStorage } from "../../utils/get-from-localstorage.utils";
 
 const accessToken = getFromLocalStorage("access-Token");
 
+
 export class BaseRequest {
-  baseUrl = process.env.API_ADRESS;
+  baseUrl = process.env.REACT_APP_API;
   controllerUrl = "";
   method = "GET";
   form = new FormData();

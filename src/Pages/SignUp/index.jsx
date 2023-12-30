@@ -82,7 +82,7 @@ export function SignUp() {
         <label>Family Name :</label>
         <PageInput  onChange={handleOnChangeFamilyName}  />
         <label>Username :</label>
-        <PageInput  onChange={handleOnChangeUsername}  />
+        <PageInput type="input" onChange={handleOnChangeUsername}  />
         <label>Password :</label>
         <PageInput  onChange={handleOnChangePassword} type="password"/>
         <label>Email :</label>
