@@ -1,0 +1,17 @@
+services:
+ chat-client:
+   image: chat-client
+   container_name: chat-client
+   build: 
+    context: .
+    dockerfile: Dockerfile
+   ports:
+    - 4000:3000
+   command: serve -s build
+   networks:
+    - docker-network
+networks:
+  docker-network:
+    name: chat-app-network
+    external: true
+
