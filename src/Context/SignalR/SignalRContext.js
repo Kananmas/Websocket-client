@@ -35,7 +35,9 @@ async function ChatConnection(context) {
     }
     context = { ...context };
   } catch (e) {
-    console.log(e);
+      const event =  new Event("error");
+      event.err = e;
+      window.dispatchEvent(event);
   }
 }
 
