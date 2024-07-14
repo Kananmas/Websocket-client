@@ -5,6 +5,7 @@ import { Button, Input } from "antd";
 import { useChat } from "../../../../../../hooks/chat.hook";
 import { If } from "../../../../../../components/If";
 import { CloseOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { useException } from "../../../../../../hooks/exception.hook";
 
 export function RoomCreator({ setGroups }) {
   const { connection } = useChat();
@@ -13,6 +14,7 @@ export function RoomCreator({ setGroups }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const userID = jwt["Sid"];
+  const {setter} = useException();
 
   async function AddNewGroup() {
     try {
@@ -24,7 +26,7 @@ export function RoomCreator({ setGroups }) {
 
       connection.invoke("CreateNewGroup", name, userID);
     } catch (e) {
-      console.log(e);
+      setter(e);
       setIsOpen(false);
     } finally {
       setIsLoading(false);

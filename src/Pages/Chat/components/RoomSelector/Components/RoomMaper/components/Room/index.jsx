@@ -4,10 +4,12 @@ import { useCallback } from "react";
 import { LeftSide, RightSide, RoomWrapper } from "./index.style";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useChat } from "../../../../../../../../hooks/chat.hook";
+import { useException } from "../../../../../../../../hooks/exception.hook";
 
 export function Room({ Room, setSelectedRoom , selectedRoom}) {
   const { connection } = useChat();
   const isSelected = selectedRoom?.id === Room?.id;
+  const {setter} = useException();
 
   const handleOnClickRoom = useCallback((e) => {
     if(isSelected) return;
@@ -22,7 +24,7 @@ export function Room({ Room, setSelectedRoom , selectedRoom}) {
         setSelectedRoom(null);
       }
     } catch (error) {
-      console.log(error.message);
+      setter(error);
     }
   };
 

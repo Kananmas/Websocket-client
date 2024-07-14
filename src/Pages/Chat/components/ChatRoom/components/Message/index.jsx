@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useChat } from "../../../../../../hooks/chat.hook";
 import { getAccessToken } from "../../../../../../utils/get-access-token.utils";
+import { useException } from "../../../../../../hooks/exception.hook";
 
 const messageStyle = (messeageDir, isMe) => ({
   alignSelf: messeageDir,
@@ -18,6 +19,7 @@ export function Message({ Message, roomId }) {
   const { connection } = useChat();
   const jwt = jwtDecode(getAccessToken());
   const userName = Object.values(jwt)[0];
+  const {setter} = useException();
 
   const { id, senderName, text, createdDate } = Message;;
   const dateOptions = { hour: "numeric", minute: "numeric" };
@@ -46,7 +48,7 @@ export function Message({ Message, roomId }) {
         connection.invoke("DeleteMessage", id, roomId);
       }
     } catch (error) {
-      console.log(error);
+      setter(error);
     }
   };
 

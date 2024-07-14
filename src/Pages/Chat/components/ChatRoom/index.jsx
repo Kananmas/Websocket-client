@@ -6,13 +6,13 @@ import { Message } from "./components/Message";
 import { RoomHolder, RoomInputHolder, RoomMessageHolder } from "./index.style";
 import { randomString } from "../../../../utils/random-string.utils";
 import { SendOutlined } from "@ant-design/icons";
+import { useException } from "../../../../hooks/exception.hook";
 
 export function ChatRoom({ SelectedRoom }) {
   const { connection } = useChat();
   const [messageText, setMessageText] = useState("");
   const [messages, setMessages] = useState([]);
-
-
+  const {setter} = useException();
 
   const updateMessages = (data) => {
     try {
@@ -23,7 +23,7 @@ export function ChatRoom({ SelectedRoom }) {
         setMessages(data);
     }
     catch (e) {
-      console.log(e.message);
+      setter(e);
     }
   };
   const getChatMessages =async () => {
@@ -34,7 +34,7 @@ export function ChatRoom({ SelectedRoom }) {
         connection.invoke("GetChatMessagesForMe", SelectedRoom.id);
       }
     } catch (e) {
-      console.log(e);
+      setter(e);
     }
   };
 
@@ -45,7 +45,7 @@ export function ChatRoom({ SelectedRoom }) {
           connection.invoke("SendNewMessage", messageText, SelectedRoom.id);
         }
     } catch (e) {
-      console.log(e);
+      setter(e);
     }
   };
 

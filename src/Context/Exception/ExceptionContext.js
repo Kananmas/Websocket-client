@@ -1,8 +1,8 @@
 import { createContext } from "react";
 
 export const exceptionState = {
-    message:"",
-    code:"",
+    getter:()=>{},
+    setter:()=>{}
 };
 
 

@@ -6,6 +6,7 @@ import jwtDecode from "jwt-decode";
 import { getAccessToken } from "../../utils/get-access-token.utils";
 import { ChatWindow } from "./index.style";
 import { useNavigate } from "react-router-dom";
+import { useException } from "../../hooks/exception.hook";
 
 function ChatComponent() {
   const { connection,Reconnect } = useChat();
@@ -14,6 +15,7 @@ function ChatComponent() {
   const [rooms, setRooms] = useState([]);
   const router = useNavigate();
   const accesstoken = getAccessToken();
+  const {setter} = useException();
 
   async function getRooms() {
     try {
@@ -31,7 +33,7 @@ function ChatComponent() {
         connection.invoke("GetAllRooms", userId);
       }
     } catch (e) {
-      console.log(e);
+      setter(e);
     }
   }
 

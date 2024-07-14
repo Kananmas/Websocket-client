@@ -7,6 +7,7 @@ import { useChat } from "../../../../hooks/chat.hook";
 import { AllRoomsHolder } from "./index.style";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { RoomMapper } from "./Components/RoomMaper";
+import { useException } from "../../../../hooks/exception.hook";
 
 const roomWrapperStyles = {
   minWidth: "400px",
@@ -26,6 +27,7 @@ export function RoomSelector({
   const [searchString, setSearchString] = useState("");
   const [searchedRooms, setSearchedRooms] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const {setter} = useException();
 
   const handleChangeSearch = (e) => {
     setSearchString(e.target.value);
@@ -47,7 +49,7 @@ export function RoomSelector({
         connection.invoke("SubscribeToGroup", groupId);
       }
     } catch (e) {
-      console.log(e);
+      setter(e)
     }
   };
 
@@ -57,7 +59,7 @@ export function RoomSelector({
       await subscribeToRoom(Room.id);
       setSelectedRoom(Room);
     } catch (error) {
-      console.log(error);
+      setter(error);
     }
   }
 
