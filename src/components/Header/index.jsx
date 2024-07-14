@@ -3,7 +3,6 @@ import { randomString } from "../../utils/random-string.utils";
 import { HeaderLink, HeaderWrapper } from "./index.style";
 
 const links = [
-  { title: "Chat", path: "/chat" },
   { title: "Sign Up", path: "/signup" },
   { title: "Sign In", path: "/signin" },
 ];

@@ -4,21 +4,23 @@ import { SignUp } from "./Pages/SignUp";
 import { SignIn } from "./Pages/SignIn";
 import { Header } from "./components/Header";
 import { Chat } from "./Pages/Chat";
+import { ExceptionProvider } from "./Context/Exception/ExceptionProvider";
 
 function App() {
   return (
     <>
       <AuthProvider>
+        <ExceptionProvider>
         <BrowserRouter>
           <Routes>
             <Route element={<Header />}>
-              <Route index element={<>Hello</>} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/signin" element={<SignIn />} />
-              <Route path="/chat" element={<Chat />} />
+              <Route index element={<Chat />} />
             </Route>
           </Routes>
         </BrowserRouter>
+        </ExceptionProvider>
       </AuthProvider>
     </>
   );

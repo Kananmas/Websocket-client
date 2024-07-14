@@ -68,7 +68,7 @@ export function SignUp() {
          accessToken:result["jwtToken"]
         })
 
-        router("/chat")
+        router("/")
        }
        catch(e) {
            const statusCode = e.statusCode;

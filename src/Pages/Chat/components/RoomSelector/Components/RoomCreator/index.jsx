@@ -4,7 +4,7 @@ import { getAccessToken } from "../../../../../../utils/get-access-token.utils";
 import { Button, Input } from "antd";
 import { useChat } from "../../../../../../hooks/chat.hook";
 import { If } from "../../../../../../components/If";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { CloseOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
 export function RoomCreator({ setGroups }) {
   const { connection } = useChat();
@@ -54,6 +54,9 @@ export function RoomCreator({ setGroups }) {
         />
         <Button onClick={handleOnClickCreate}>
           <PlusOutlined />
+        </Button>
+        <Button onClick={() => setIsOpen(false)}>
+          <CloseOutlined />
         </Button>
       </If>
       <If condition={!isOpen}>

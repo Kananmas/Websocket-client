@@ -39,7 +39,7 @@ export function SignIn() {
         accessToken: result["jwtToken"],
       });
 
-      router("/chat");
+      router("/");
     } catch (error) {
       setError(error.message);
     }

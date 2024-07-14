@@ -14,4 +14,7 @@ export const Page = styled("div")`
   margin-left: auto;
   margin-right: auto;
   margin-top: 10%;
+  background-color:white;
+  padding:24px;
+  border-radius:12px;
 `;
