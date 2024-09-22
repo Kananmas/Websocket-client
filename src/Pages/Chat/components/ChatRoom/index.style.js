@@ -1,4 +1,5 @@
 import { Input } from "antd";
+import Title from "antd/es/typography/Title";
 import { styled } from "styled-components";
 
 export const RoomHolder = styled("div")`
@@ -16,16 +17,27 @@ export const RoomInputHolder = styled("div")`
   display: flex;
   position: sticky;
   top: 90%;
-  bottom: 0%;
+  bottom: 6px;
   padding: 12px 20%;
   background-color: white;
-  border: 1px dashed black;
   border-radius: 12px;
   border-bottom: 0px;
+  box-shadow: 0 0 10px #ddd;
 `;
 
+export const TitleStyle = styled(Title)`
+  background-color:white;
+  text-align:center;
+  padding:5px;
+  border-radius:12px;
+
+`
+
 export const RoomMessageHolder = styled("div")`
-  min-height: 83vh;
+  height:70vh;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding:12px;
+  border-radius:12px;
 `;

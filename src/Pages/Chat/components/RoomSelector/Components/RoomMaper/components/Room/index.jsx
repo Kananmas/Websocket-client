@@ -31,10 +31,10 @@ export function Room({ Room, setSelectedRoom , selectedRoom}) {
   if (!Room) return null;
 
   return (
-    <RoomWrapper style={{backgroundColor:isSelected ? "gray":""}}>
+    <RoomWrapper style={{backgroundColor:isSelected ? "gainsboro":""}}>
       <RightSide onClick={handleOnClickRoom}>
         <Title level={3}>{Room.name}</Title>
-        <Paragraph>{Room.lastMessage ?? "No Message Founded"}</Paragraph>
+        <Paragraph>{Room.lastMessage ?? ""}</Paragraph>
       </RightSide>
       <LeftSide onClick={handleOnClickDeleteRoom}>
         <DeleteOutlined />

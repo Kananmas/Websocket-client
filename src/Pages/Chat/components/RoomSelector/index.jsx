@@ -13,8 +13,9 @@ const roomWrapperStyles = {
   minWidth: "400px",
   float: "right",
   textAlign: "center",
-  borderLeft: "1px solid black",
-  minHeight: "94vh",
+  boxShadow:"0px 0px 10px #ddd",
+  minHeight: "92.7vh",
+  backgroundColor:"white"
 };
 
 export function RoomSelector({
@@ -91,7 +92,7 @@ export function RoomSelector({
           <If condition={searchedRooms.length}>
             <RoomMapper
               rooms={searchedRooms}
-              selectedRoom={null}
+              selectedRoom={selectedRoom}
               setSelectedRoom={handleOnClickSearchRoom}
             />
           </If>

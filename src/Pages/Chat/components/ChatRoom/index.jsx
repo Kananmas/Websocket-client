@@ -1,9 +1,8 @@
 import { useEffect , useState } from "react";
 import { useChat } from "../../../../hooks/chat.hook";
-import Title from "antd/es/typography/Title";
 import { Button, Input } from "antd";
 import { Message } from "./components/Message";
-import { RoomHolder, RoomInputHolder, RoomMessageHolder } from "./index.style";
+import { RoomHolder, RoomInputHolder, RoomMessageHolder, TitleStyle } from "./index.style";
 import { randomString } from "../../../../utils/random-string.utils";
 import { SendOutlined } from "@ant-design/icons";
 import { useException } from "../../../../hooks/exception.hook";
@@ -74,7 +73,7 @@ export function ChatRoom({ SelectedRoom }) {
 
   return (
     <RoomHolder>
-      <Title level={3}>{SelectedRoom.name}</Title>
+      <TitleStyle level={3}>{SelectedRoom.name}</TitleStyle>
       <RoomMessageHolder>
         {messages.map((message) => (
           <Message

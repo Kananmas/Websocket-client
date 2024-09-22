@@ -4,7 +4,9 @@ export function RoomMapper({ rooms, setSelectedRoom, selectedRoom }) {
   return (
     <>
       {rooms.map((room) => {
-       return <Room key={room.Id} Room={room} setSelectedRoom={setSelectedRoom} selectedRoom={selectedRoom}/>;
+        return <div key={room.Id}  style={{ marginTop: "12px" }}>
+          <Room Room={room} setSelectedRoom={setSelectedRoom} selectedRoom={selectedRoom} />
+        </div>
       })}
     </>
   );
