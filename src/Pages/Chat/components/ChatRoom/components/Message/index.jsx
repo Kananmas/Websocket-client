@@ -1,11 +1,17 @@
 
+// utils
 import jwtDecode from "jwt-decode";
+
+// components
 import { MessageContent } from "./components/MessageContent";
-import { useMemo } from "react";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useChat } from "../../../../../../hooks/chat.hook";
 import { getAccessToken } from "../../../../../../utils/get-access-token.utils";
+
+// hooks
 import { useException } from "../../../../../../hooks/exception.hook";
+import { useChat } from "../../../../../../hooks/chat.hook";
+import { useMemo } from "react";
+
 
 const messageStyle = (messeageDir, isMe) => ({
   alignSelf: messeageDir,

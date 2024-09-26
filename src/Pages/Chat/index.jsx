@@ -1,14 +1,23 @@
-import { memo, useEffect, useState } from "react";
-import { useChat } from "../../hooks/chat.hook";
+// utils
+import { getAccessToken } from "../../utils/get-access-token.utils";
+import jwtDecode from "jwt-decode";
+
+
+// components
 import { RoomSelector } from "./components/RoomSelector";
 import { ChatRoom } from "./components/ChatRoom";
-import jwtDecode from "jwt-decode";
-import { getAccessToken } from "../../utils/get-access-token.utils";
 import { ChatWindow } from "./index.style";
-import { useNavigate } from "react-router-dom";
-import { useException } from "../../hooks/exception.hook";
 import { If } from "../../components/If";
+
+// hooks
 import { useScreen } from "../../hooks/sceen.hook";
+import { useException } from "../../hooks/exception.hook";
+import { useNavigate } from "react-router-dom";
+import { memo, useEffect, useState } from "react";
+import { useChat } from "../../hooks/chat.hook";
+
+
+
 function ChatComponent() {
   const { connection, Reconnect } = useChat();
   const [selectedRoom, setSelectedRoom] = useState(undefined);

@@ -1,11 +1,17 @@
-import { useEffect , useState } from "react";
-import { useChat } from "../../../../hooks/chat.hook";
+// components
 import { Button, Input } from "antd";
 import { Message } from "./components/Message";
 import { RoomHolder, RoomInputHolder, RoomMessageHolder, TitleStyle } from "./index.style";
-import { randomString } from "../../../../utils/random-string.utils";
 import { SendOutlined } from "@ant-design/icons";
+
+// utils
+import { randomString } from "../../../../utils/random-string.utils";
+
+// hooks
 import { useException } from "../../../../hooks/exception.hook";
+import { useEffect , useState } from "react";
+import { useChat } from "../../../../hooks/chat.hook";
+
 
 export function ChatRoom({ SelectedRoom }) {
   const { connection } = useChat();

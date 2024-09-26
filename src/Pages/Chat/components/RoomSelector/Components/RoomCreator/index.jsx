@@ -1,11 +1,18 @@
+// utils
 import jwtDecode from "jwt-decode";
-import { useState } from "react";
+
+// components
 import { getAccessToken } from "../../../../../../utils/get-access-token.utils";
 import { Button, Input } from "antd";
-import { useChat } from "../../../../../../hooks/chat.hook";
 import { If } from "../../../../../../components/If";
 import { CloseOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+
+// hooks
 import { useException } from "../../../../../../hooks/exception.hook";
+import { useState } from "react";
+import { useChat } from "../../../../../../hooks/chat.hook";
+
+
 
 export function RoomCreator({ setGroups }) {
   const { connection } = useChat();

@@ -1,10 +1,14 @@
+// components
 import Paragraph from "antd/es/typography/Paragraph";
 import Title from "antd/es/typography/Title";
-import { useCallback } from "react";
 import { LeftSide, RightSide, RoomWrapper } from "./index.style";
 import { DeleteOutlined } from "@ant-design/icons";
+
+// hooks
 import { useChat } from "../../../../../../../../hooks/chat.hook";
+import { useCallback } from "react";
 import { useException } from "../../../../../../../../hooks/exception.hook";
+
 
 export function Room({ Room, setSelectedRoom , selectedRoom}) {
   const { connection } = useChat();

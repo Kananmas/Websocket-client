@@ -1,3 +1,4 @@
+// components
 import Title from "antd/es/typography/Title";
 import { BodyWrapper } from "./index.style";
 import Paragraph from "antd/es/typography/Paragraph";

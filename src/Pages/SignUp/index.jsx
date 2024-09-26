@@ -1,11 +1,15 @@
+// components
 import { Button } from "antd";
 import { useAuth } from "../../hooks/auth.hook";
 import { BtnHolder, Page, PageInput } from "./index.style";
 import { PostUserRequest } from "../../Classes/Requests/UserRequests/POST";
+import { ErrorWrapper } from "../../components/ErorrWrapper";
+
+// hooks
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../../hooks/localstorage.hook";
-import { ErrorWrapper } from "../../components/ErorrWrapper";
+
 
 export function SignUp() {
     const {

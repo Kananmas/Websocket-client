@@ -1,11 +1,16 @@
+// components
 import { Button } from "antd";
-import { useAuth } from "../../hooks/auth.hook";
 import { BtnHolder, Page, PageInput } from "./index.style";
 import { GetUserRequest } from "../../Classes/Requests/UserRequests/GET";
+import { ErrorWrapper } from "../../components/ErorrWrapper";
+
+
+// hooks
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/localstorage.hook";
 import { useState } from "react";
-import { ErrorWrapper } from "../../components/ErorrWrapper";
+import { useAuth } from "../../hooks/auth.hook";
+
 
 export function SignIn() {
   const { authState, authActions, authMutator } = useAuth();
