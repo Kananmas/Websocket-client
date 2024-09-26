@@ -4,19 +4,11 @@ import { RoomCreator } from "./Components/RoomCreator";
 import { Button, Input } from "antd";
 import { GetGroupsByName } from "../../../../Classes/Requests/GroupRequests/Get";
 import { useChat } from "../../../../hooks/chat.hook";
-import { AllRoomsHolder } from "./index.style";
+import { AllRoomsHolder, RoomWrapper } from "./index.style";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { RoomMapper } from "./Components/RoomMaper";
 import { useException } from "../../../../hooks/exception.hook";
 
-const roomWrapperStyles = {
-  minWidth: "400px",
-  float: "right",
-  textAlign: "center",
-  boxShadow:"0px 0px 10px #ddd",
-  minHeight: "92.7vh",
-  backgroundColor:"white"
-};
 
 export function RoomSelector({
   rooms,
@@ -65,7 +57,7 @@ export function RoomSelector({
   }
 
   return (
-    <div style={roomWrapperStyles}>
+    <RoomWrapper>
       <AllRoomsHolder>
         <If condition={!isSearching}>
           <RoomCreator setGroups={setRooms} />
@@ -101,6 +93,6 @@ export function RoomSelector({
           </Button>
         </If>
       </AllRoomsHolder>
-    </div>
+    </RoomWrapper>
   );
 }

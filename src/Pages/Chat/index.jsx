@@ -7,19 +7,22 @@ import { getAccessToken } from "../../utils/get-access-token.utils";
 import { ChatWindow } from "./index.style";
 import { useNavigate } from "react-router-dom";
 import { useException } from "../../hooks/exception.hook";
-
+import { If } from "../../components/If";
+import { useScreen } from "../../hooks/sceen.hook";
 function ChatComponent() {
-  const { connection,Reconnect } = useChat();
+  const { connection, Reconnect } = useChat();
   const [selectedRoom, setSelectedRoom] = useState(undefined);
   const [timePassed, setTimePassed] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const screen = useScreen();
   const [rooms, setRooms] = useState([]);
   const router = useNavigate();
   const accesstoken = getAccessToken();
-  const {setter} = useException();
+  const { setter } = useException();
 
   async function getRooms() {
     try {
-      if(!connection) {
+      if (!connection) {
         await Reconnect();
       }
       if (connection && connection?._connectionState === "Connected") {
@@ -53,7 +56,25 @@ function ChatComponent() {
       clearTimeout(timeOutValue);
     }
     getRooms();
-  }, [connection, timePassed , selectedRoom]);
+  }, [connection, timePassed, selectedRoom]);
+
+  const handleMenuOpen = () => {
+    if (window.innerWidth > 768) {
+      if (menuOpen) {
+        setMenuOpen(false);
+      }
+      return;
+    }
+    setMenuOpen(!menuOpen);
+  }
+
+  useEffect(() => {
+    window.addEventListener("OpenMenu", handleMenuOpen)
+
+    return () => {
+      window.removeEventListener("OpenMenu", handleMenuOpen)
+    }
+  }, [menuOpen])
 
 
   if (!accesstoken) {
@@ -62,13 +83,28 @@ function ChatComponent() {
 
   return (
     <ChatWindow>
-      <ChatRoom SelectedRoom={selectedRoom} />
-      <RoomSelector
-        rooms={rooms}
-        selectedRoom={selectedRoom}
-        setSelectedRoom={setSelectedRoom}
-        setRooms={setRooms}
-      />
+      <If condition={screen.width > 738}>
+        <ChatRoom SelectedRoom={selectedRoom} />
+        <RoomSelector
+          rooms={rooms}
+          selectedRoom={selectedRoom}
+          setSelectedRoom={setSelectedRoom}
+          setRooms={setRooms}
+        />
+      </If>
+      <If condition={screen.width < 738}>
+        <If condition={!menuOpen}>
+          <ChatRoom SelectedRoom={selectedRoom} />
+        </If>
+        <If condition={menuOpen}>
+          <RoomSelector
+            rooms={rooms}
+            selectedRoom={selectedRoom}
+            setSelectedRoom={setSelectedRoom}
+            setRooms={setRooms}
+          />
+        </If>
+      </If>
     </ChatWindow>
   );
 }

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { randomString } from "../../utils/random-string.utils";
-import { HeaderLink, HeaderWrapper } from "./index.style";
+import { HeaderLink, HeaderWrapper, Icon } from "./index.style";
 
 const links = [
   { title: "Sign Up", path: "/signup" },
@@ -9,11 +9,16 @@ const links = [
 
 
 const HomeLinkStyle = {
-    fontFamily: "fantasy",
-    fontSize: "25px",
-  }
+  fontFamily: "fantasy",
+  fontSize: "25px",
+}
 
 export function Header() {
+  const handleClickMenu = () => {
+    const event = new Event("OpenMenu");
+    dispatchEvent(event);
+  }
+
   return (
     <>
       <HeaderWrapper>
@@ -28,6 +33,7 @@ export function Header() {
             {link.title}
           </HeaderLink>
         ))}
+        <Icon onClick={handleClickMenu} />
       </HeaderWrapper>
       <Outlet />
     </>
